@@ -1,0 +1,8 @@
+local function setPartsCanCollide(model)
+    for _, descendant in ipairs(model:GetDescendants()) do
+        if descendant:IsA("Part") then
+            -- Set CanCollide to true
+            descendant.CanCollide = true
+        end
+    end
+end
