@@ -1,8 +1,18 @@
-local function setPartsCanCollide(model)
+local function cleanPartsInModel(model)
     for _, descendant in ipairs(model:GetDescendants()) do
         if descendant:IsA("Part") then
+            -- Remove all children of the part
+            for _, child in ipairs(descendant:GetChildren()) do
+                child:Destroy()
+            end
+            
             -- Set CanCollide to true
             descendant.CanCollide = true
         end
     end
+end
+
+local classicMap = workspace:FindFirstChild("Classic Map")
+if classicMap and classicMap:IsA("Model") then
+    cleanPartsInModel(classicMap)
 end
